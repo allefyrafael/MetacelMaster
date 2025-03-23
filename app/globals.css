@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+/* Binary code background animation */
+.binary-code-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 255, 0, 0.05), transparent);
+  font-family: monospace;
+  font-size: 14px;
+  color: rgba(0, 255, 0, 0.2);
+  overflow: hidden;
+}
+
+.binary-code-bg::before {
+  content: "01010101 10101010 00110011 11001100 10101010 01010101 11110000 00001111";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  transform: rotate(45deg);
+  animation: binary-rain 20s linear infinite;
+  white-space: nowrap;
+  line-height: 1.5;
+  will-change: transform;
+}
+
+/* Matrix-like background animation */
+.matrix-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
+  will-change: opacity;
+}
+
+@keyframes binary-rain {
+  0% {
+    transform: translateY(-10%) rotate(45deg);
+  }
+  100% {
+    transform: translateY(10%) rotate(45deg);
+  }
+}
+
+/* Accordion animation classes */
+.accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
