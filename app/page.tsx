@@ -8,18 +8,13 @@ import Partnership from "@/components/partnership"
 import Features from "@/components/features"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
-import dynamic from "next/dynamic"
-
-// Importar o FacebookPixel de forma dinâmica para evitar problemas de SSR
-const FacebookPixelComponent = dynamic(() => import("@/components/facebook-pixel"), {
-  ssr: false,
-})
+import FacebookPixelWrapper from "@/components/facebook-pixel-wrapper"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <Suspense fallback={null}>
-        <FacebookPixelComponent />
+        <FacebookPixelWrapper />
       </Suspense>
       <Navbar />
       <Hero />
