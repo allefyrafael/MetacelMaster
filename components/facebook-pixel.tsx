@@ -1,40 +1,25 @@
-// components/FacebookPixel.js
-"use client";
+"use client"
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, Suspense } from "react";
+import { usePathname, useSearchParams } from "next/navigation"
+import { useEffect } from "react"
 
 declare global {
   interface Window {
-    fbq: any;
+    fbq: any
   }
 }
 
-function FacebookPixelContent() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+export default function FacebookPixel() {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
-    // Verifica se window está disponível (ou seja, se está no lado do cliente)
+    // Verificar se estamos no navegador antes de acessar window
     if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "PageView");
+      window.fbq("track", "PageView")
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams])
 
-  const trackEvent = (event: string, options = {}) => {
-    // Verifica se window está disponível antes de usar
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", event, options);
-    }
-  };
-
-  return null;
+  return null
 }
 
-export default function FacebookPixel() {
-  return (
-    <Suspense fallback={null}>
-      <FacebookPixelContent />
-    </Suspense>
-  );
-}

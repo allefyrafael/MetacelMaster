@@ -629,6 +629,9 @@ function TypewriterEffect({ text }) {
 function CodeParticles() {
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
+    // Verificar se estamos no servidor ou no cliente
+    const isServer = typeof window === "undefined"
+
     return Array.from({ length: 20 }).map((_, index) => {
       const size = Math.random() * 12 + 8
       return {

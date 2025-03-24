@@ -35,6 +35,22 @@ export default function Contact() {
 
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
+    // Verificar se estamos no servidor
+    if (typeof window === "undefined") {
+      // Retornar um array vazio ou valores padrão se estiver no servidor
+      return Array.from({ length: 30 }).map((_, index) => ({
+        id: index,
+        opacity: 0.3,
+        x: "50%",
+        y: "50%",
+        scale: 0.5,
+        size: 2,
+        blur: "0px",
+        glow: 3,
+        duration: 4,
+      }))
+    }
+
     return Array.from({ length: 30 }).map((_, index) => ({
       id: index,
       opacity: Math.random() * 0.5 + 0.1,
@@ -53,7 +69,7 @@ export default function Contact() {
     return Array.from({ length: 8 }).map((_, i) => ({
       id: i,
       top: `${(i + 1) * 12}%`,
-      duration: Math.random() * 15 + 20,
+      duration: typeof window === "undefined" ? 20 : Math.random() * 15 + 20,
       delay: i * 2,
     }))
   }, [])
