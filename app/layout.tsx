@@ -1,22 +1,25 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import Script from "next/script"
+// app/layout.js
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
+import FacebookPixel from "../components/facebook-pixel";
 
-const inter = Inter({ subsets: ["latin"] })
+// Configuração da fonte Inter
+const inter = Inter({ subsets: ["latin"] });
 
+// Definição dos metadados
 export const metadata: Metadata = {
   title: "MetacelMaster",
   description: "Soluções profissionais para desbloqueio e manutenção de smartphones com tecnologia avançada.",
-    generator: 'v0.dev'
-}
+};
 
+// Componente RootLayout
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
@@ -50,14 +53,19 @@ export default function RootLayout({
         </noscript>
         {/* End Facebook Pixel Code */}
 
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        {/* Componente FacebookPixel para rastreamento dinâmico */}
+        <FacebookPixel />
+
+        {/* Provedor de tema e conteúdo da página */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
-
-
-
-import './globals.css'
