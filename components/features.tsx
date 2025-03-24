@@ -35,6 +35,20 @@ export default function Features() {
 
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
+    // Verificar se estamos no servidor
+    if (typeof window === "undefined") {
+      return Array.from({ length: 50 }).map((_, index) => ({
+        id: index,
+        x: 0,
+        y: 0,
+        opacity: 0.3,
+        scale: 0.8,
+        size: 2,
+        blur: "0px",
+        glow: 3,
+      }))
+    }
+
     return Array.from({ length: 50 }).map((_, index) => ({
       id: index,
       x: Math.random() * window.innerWidth,
@@ -127,8 +141,8 @@ export default function Features() {
               key={`code-${index}`}
               className="absolute font-mono text-green-500/30 text-xs whitespace-nowrap"
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: typeof window === "undefined" ? 0 : Math.random() * window.innerWidth,
+                y: typeof window === "undefined" ? 0 : Math.random() * window.innerHeight,
                 opacity: 0,
               }}
               animate={{

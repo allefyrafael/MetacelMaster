@@ -1,7 +1,7 @@
 "use client"
 
-import { usePathname, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 declare global {
   interface Window {
@@ -11,14 +11,20 @@ declare global {
 
 export default function FacebookPixel() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
+  // Remover useSearchParams e usar uma abordagem alternativa
+  const [mounted, setMounted] = useState(false)
 
+  // Efeito para montar o componente apenas no cliente
   useEffect(() => {
-    // Verificar se estamos no navegador antes de acessar window
-    if (typeof window !== "undefined" && window.fbq) {
+    setMounted(true)
+  }, [])
+
+  // Efeito para rastrear visualizações de página
+  useEffect(() => {
+    if (mounted && typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "PageView")
     }
-  }, [pathname, searchParams])
+  }, [pathname, mounted])
 
   return null
 }

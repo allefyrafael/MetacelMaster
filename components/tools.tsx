@@ -20,6 +20,18 @@ export default function Tools() {
 
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
+    // Verificar se estamos no servidor
+    if (typeof window === "undefined") {
+      return Array.from({ length: 40 }).map((_, i) => ({
+        id: i,
+        path: "M0,50 Q25,30 50,50 T100,50",
+        stroke: "rgba(0, 255, 0, 0.3)",
+        strokeWidth: 0.2,
+        delay: 0,
+        duration: 5,
+      }))
+    }
+
     return Array.from({ length: 40 }).map((_, i) => ({
       id: i,
       path:
