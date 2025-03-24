@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { useEffect, useState, useMemo } from "react"
 import { Lock, Unlock, Shield, Smartphone, Zap, Code, Wifi, Database, CheckCircle } from "lucide-react"
 import Image from "next/image"
+// Adicione este import no topo do arquivo
+import { trackFacebookEvent } from "@/lib/facebook-pixel"
 
 export default function Hero() {
   return (
@@ -111,20 +113,24 @@ export default function Hero() {
 
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
                 <button
-                  className="bg-green-500 hover:bg-green-600 text-black font-bold py-4 md:py-6 px-6 md:px-8 rounded-lg text-base md:text-lg transition-all duration-300"
+                  className="bg-green-500 hover:bg-green-600 text-black font-bold py-2.5 md:py-3 px-6 md:px-8 rounded-lg text-base md:text-lg transition-all duration-300 shadow-md hover:shadow-lg"
                   style={{ borderRadius: "0.5rem" }}
                   onClick={(e) => {
                     e.preventDefault()
+                    // Rastrear o evento de clique no botão
+                    trackFacebookEvent("ServicesButtonClick")
                     document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
                   }}
                 >
                   Nossos Serviços
                 </button>
                 <button
-                  className="bg-black border-2 border-green-500 text-green-500 hover:bg-green-500/20 font-bold py-4 md:py-6 px-6 md:px-8 rounded-lg text-base md:text-lg relative shadow-lg shadow-green-500/20 transition-all duration-300"
+                  className="bg-black border border-green-500 text-green-500 hover:bg-green-500/20 font-bold py-2.5 md:py-3 px-6 md:px-8 rounded-lg text-base md:text-lg relative shadow-md hover:shadow-lg shadow-green-500/20 transition-all duration-300"
                   style={{ borderRadius: "0.5rem" }}
                   onClick={(e) => {
                     e.preventDefault()
+                    // Rastrear o evento de clique no botão
+                    trackFacebookEvent("PartnershipButtonClick")
                     document.getElementById("partnership")?.scrollIntoView({ behavior: "smooth" })
                   }}
                 >

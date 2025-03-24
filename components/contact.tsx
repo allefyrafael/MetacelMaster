@@ -4,6 +4,7 @@ import type React from "react"
 
 import { motion } from "framer-motion"
 import { Phone, Mail, Instagram, Facebook, Youtube, MessageSquare, Code, Cpu, Zap, MapPin, Clock } from "lucide-react"
+import { trackFacebookEvent } from "@/lib/facebook-pixel"
 
 export default function Contact() {
   // Remova o estado e funções não utilizadas
@@ -193,6 +194,7 @@ export default function Contact() {
                   isLink
                   linkHref="https://wa.me/message/5KG4UHMFPZVXG1"
                   linkText="WhatsApp"
+                  onClick={() => trackFacebookEvent("WhatsAppContactClick")}
                 />
 
                 <ContactInfoCompact
@@ -239,6 +241,7 @@ export default function Contact() {
                   isLink
                   linkHref="https://www.whatsapp.com/channel/0029Vb8AwToHLHQbDA31oP1i"
                   linkText="WhatsApp"
+                  onClick={() => trackFacebookEvent("WhatsAppChannelClick")}
                 />
 
                 <ContactInfoCompact icon={<MapPin className="text-green-500" />} title="Localização" content="Brasil" />
@@ -371,6 +374,7 @@ function ContactInfoCompact({
   linkText = "",
   isEmail = false,
   emailAddress = "",
+  onClick,
 }: {
   icon: React.ReactNode
   title: string
@@ -380,10 +384,14 @@ function ContactInfoCompact({
   linkText?: string
   isEmail?: boolean
   emailAddress?: string
+  onClick?: () => void
 }) {
   const handleClick = () => {
     if (isEmail && emailAddress) {
       window.location.href = `mailto:${emailAddress}`
+      onClick?.()
+    } else if (onClick) {
+      onClick()
     }
   }
 

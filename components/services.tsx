@@ -15,6 +15,7 @@ import {
   ChevronUp,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { trackFacebookEvent } from "@/lib/facebook-pixel"
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<string | null>(null)
@@ -85,6 +86,10 @@ export default function Services() {
 
   const handleRedirect = () => {
     if (selectedService && serviceLinks[selectedService]) {
+      // Rastrear o evento de serviço selecionado
+      trackFacebookEvent("ServiceSelected", {
+        service_name: selectedService,
+      })
       window.open(serviceLinks[selectedService], "_blank")
     } else {
       setShowAlert(true)
@@ -174,7 +179,10 @@ export default function Services() {
 
         {/* Services Display - Enhanced Design */}
         <div
-          onClick={() => window.open("https://wa.link/metacelmaster", "_blank")}
+          onClick={() => {
+            trackFacebookEvent("ServicesCardClick")
+            window.open("https://wa.link/metacelmaster", "_blank")
+          }}
           className="mt-16 bg-gradient-to-b from-gray-900/80 to-black/80 backdrop-blur-sm rounded-xl p-8 border border-green-500/30 shadow-lg shadow-green-500/10 relative overflow-hidden cursor-pointer hover:border-green-500/50 transition-all group/services"
         >
           {/* Background decorative elements */}
