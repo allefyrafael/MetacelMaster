@@ -1,5 +1,4 @@
 "use client"
-import { Button } from "@/components/ui/button"
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { motion } from "framer-motion"
 import { useEffect, useState, useMemo } from "react"
@@ -111,24 +110,26 @@ export default function Hero() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
-                <Button
-                  className="bg-black border-2 border-green-500 text-green-500 hover:bg-green-500/20 font-bold py-4 md:py-6 px-6 md:px-8 rounded text-base md:text-lg relative shadow-lg shadow-green-500/20 transition-all duration-300"
+                <button
+                  className="bg-green-500 hover:bg-green-600 text-black font-bold py-4 md:py-6 px-6 md:px-8 rounded-lg text-base md:text-lg transition-all duration-300"
+                  style={{ borderRadius: "0.5rem" }}
                   onClick={(e) => {
                     e.preventDefault()
                     document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
                   }}
                 >
                   Nossos Serviços
-                </Button>
-                <Button
-                  className="bg-black border-2 border-green-500 text-green-500 hover:bg-green-500/20 font-bold py-4 md:py-6 px-6 md:px-8 rounded-md text-base md:text-lg relative shadow-lg shadow-green-500/20 transition-all duration-300"
+                </button>
+                <button
+                  className="bg-black border-2 border-green-500 text-green-500 hover:bg-green-500/20 font-bold py-4 md:py-6 px-6 md:px-8 rounded-lg text-base md:text-lg relative shadow-lg shadow-green-500/20 transition-all duration-300"
+                  style={{ borderRadius: "0.5rem" }}
                   onClick={(e) => {
                     e.preventDefault()
                     document.getElementById("partnership")?.scrollIntoView({ behavior: "smooth" })
                   }}
                 >
                   <span className="relative z-10">Seja um Parceiro</span>
-                </Button>
+                </button>
               </div>
             </motion.div>
           </div>

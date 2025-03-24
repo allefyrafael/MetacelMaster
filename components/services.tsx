@@ -325,13 +325,13 @@ export default function Services() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="relative overflow-hidden group bg-green-500 hover:bg-green-600 text-black px-10 py-4 rounded-lg font-bold text-lg flex items-center gap-3 transition-all shadow-lg shadow-green-500/20">
+              <button
+                className="bg-green-500 hover:bg-green-600 text-black px-10 py-4 font-bold text-lg flex items-center gap-3 transition-all shadow-lg shadow-green-500/20 rounded-lg"
+                style={{ borderRadius: "0.5rem" }}
+              >
                 <span>Solicitar Serviço</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-
-                {/* Animated glow effect */}
-                <span className="absolute -inset-0.5 bg-green-400/30 blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              </div>
+              </button>
             </motion.div>
           </div>
         </div>

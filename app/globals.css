@@ -98,3 +98,20 @@ body {
   }
 }
 
+/* Garantir que botões tenham cantos arredondados */
+button,
+.btn,
+.button,
+[role="button"],
+.rounded-lg,
+.rounded-md {
+  border-radius: 0.5rem !important;
+}
+
+/* Garantir que o componente Button do shadcn tenha cantos arredondados */
+.button-root,
+[data-button-root],
+[class*="button-root"] {
+  border-radius: 0.5rem !important;
+}
+
