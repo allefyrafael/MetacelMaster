@@ -5,7 +5,11 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap", // Melhor renderização de fonte
+  preload: true, // Precarregar fonte
+})
 
 export const metadata: Metadata = {
   title: "MetacelMaster",
@@ -22,6 +26,8 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       </head>
       <body className={inter.className}>
         {/* Facebook Pixel Code */}

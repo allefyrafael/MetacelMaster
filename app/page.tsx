@@ -9,6 +9,7 @@ import Features from "@/components/features"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import FacebookPixelWrapper from "@/components/facebook-pixel-wrapper"
+import { PerformanceProvider } from "@/components/performance-provider"
 
 export default function Home() {
   return (
@@ -16,15 +17,18 @@ export default function Home() {
       <Suspense fallback={null}>
         <FacebookPixelWrapper />
       </Suspense>
-      <Navbar />
-      <Hero />
-      <Services />
-      <Tools />
-      <Training />
-      <Features />
-      <Partnership />
-      <Contact />
-      <Footer />
+
+      <PerformanceProvider>
+        <Navbar />
+        <Hero />
+        <Services />
+        <Tools />
+        <Training />
+        <Features />
+        <Partnership />
+        <Contact />
+        <Footer />
+      </PerformanceProvider>
     </main>
   )
 }

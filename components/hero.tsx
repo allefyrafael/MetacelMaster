@@ -26,7 +26,7 @@ export default function Hero() {
 
         {/* Binary code animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {Array.from({ length: 250 }).map((_, index) => (
+          {Array.from({ length: 80 }).map((_, index) => (
             <motion.div
               key={index}
               className="absolute font-mono text-green-500"
@@ -56,7 +56,7 @@ export default function Hero() {
 
         {/* Efeito de linhas de código adicionais */}
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 15 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index) => (
             <motion.div
               key={`line-${index}`}
               className="absolute h-px bg-gradient-to-r from-transparent via-green-500/40 to-transparent"
@@ -70,10 +70,10 @@ export default function Hero() {
                 x: ["-100%", "100%"],
               }}
               transition={{
-                duration: Math.random() * 20 + 15,
+                duration: 25, // Valor fixo em vez de aleatório
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
-                delay: Math.random() * 10,
+                delay: index * 2, // Delay baseado no índice para evitar cálculos aleatórios
               }}
             />
           ))}

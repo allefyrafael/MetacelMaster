@@ -22,7 +22,7 @@ export default function Tools() {
   const particles = useMemo(() => {
     // Verificar se estamos no servidor
     if (typeof window === "undefined") {
-      return Array.from({ length: 40 }).map((_, i) => ({
+      return Array.from({ length: 15 }).map((_, i) => ({
         id: i,
         path: "M0,50 Q25,30 50,50 T100,50",
         stroke: "rgba(0, 255, 0, 0.3)",
@@ -32,18 +32,18 @@ export default function Tools() {
       }))
     }
 
-    return Array.from({ length: 40 }).map((_, i) => ({
+    return Array.from({ length: 15 }).map((_, i) => ({
       id: i,
       path:
-        Math.random() > 0.5
+        i % 3 === 0
           ? "M0,50 Q25,30 50,50 T100,50"
-          : Math.random() > 0.5
+          : i % 3 === 1
             ? "M0,30 Q35,60 70,30 T100,30"
             : "M0,70 Q50,40 80,70 T100,70",
-      stroke: `rgba(0, 255, 0, ${Math.random() * 0.3 + 0.2})`,
-      strokeWidth: Math.random() * 0.2 + 0.1,
-      delay: Math.random() * 3,
-      duration: Math.random() * 3 + 4,
+      stroke: `rgba(0, 255, 0, ${0.3 + (i % 5) * 0.05})`,
+      strokeWidth: 0.2 + (i % 3) * 0.05,
+      delay: i * 0.2, // Delay baseado no índice
+      duration: 4 + (i % 4), // Duração baseada no índice
     }))
   }, [])
 

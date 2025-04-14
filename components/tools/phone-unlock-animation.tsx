@@ -88,13 +88,13 @@ function PhoneAnimation({ showLogo = false }) {
 function BinaryParticles({ unlocked }: { unlocked: boolean }) {
   // Generate positions for particles
   const particles = useMemo(() => {
-    return Array.from({ length: 40 }, (_, i) => ({
+    return Array.from({ length: 20 }, (_, i) => ({
       id: i,
-      digit: Math.random() > 0.5 ? "1" : "0",
-      initialX: (Math.random() - 0.5) * 400,
-      initialY: (Math.random() - 0.5) * 400,
-      size: Math.random() * 14 + 10,
-      speed: Math.random() * 2 + 1,
+      digit: i % 2 === 0 ? "1" : "0",
+      initialX: ((i % 5) - 2) * 80, // Distribuição mais determinística
+      initialY: (Math.floor(i / 5) - 2) * 80, // Distribuição mais determinística
+      size: 10 + (i % 5) * 2, // Tamanho baseado no índice
+      speed: 1 + (i % 3), // Velocidade simplificada
     }))
   }, [])
 
@@ -112,14 +112,14 @@ function BinaryParticles({ unlocked }: { unlocked: boolean }) {
           animate={
             unlocked
               ? {
-                  x: particle.initialX * 2,
-                  y: particle.initialY * 2,
+                  x: particle.initialX * 1.5,
+                  y: particle.initialY * 1.5,
                   opacity: 0,
                 }
               : {
-                  x: [particle.initialX, particle.initialX + 20, particle.initialX],
-                  y: [particle.initialY, particle.initialY + 20, particle.initialY],
-                  opacity: [0.3, 0.7, 0.3],
+                  x: [particle.initialX, particle.initialX + 10, particle.initialX],
+                  y: [particle.initialY, particle.initialY + 10, particle.initialY],
+                  opacity: [0.3, 0.5, 0.3],
                 }
           }
           transition={{

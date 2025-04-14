@@ -40,8 +40,8 @@ export const CanvasRevealEffect = ({
   `
     document.head.appendChild(styleElement)
 
-    // Create animated background with dots
-    const dotCount = Math.min(200, window.innerWidth / 5) // Ajuste dinâmico baseado no tamanho da tela
+    // Create animated background with dots - reduzir quantidade significativamente
+    const dotCount = Math.min(80, Math.floor(window.innerWidth / 15)) // Menos pontos, ajuste dinâmico mais eficiente
     container.innerHTML = ""
 
     // Crie um fragmento para melhorar a performance de inserção de múltiplos elementos
@@ -49,10 +49,10 @@ export const CanvasRevealEffect = ({
 
     for (let i = 0; i < dotCount; i++) {
       const dot = document.createElement("div")
-      const size = Math.random() * dotSize + 1
-      const colorSet = colors[Math.floor(Math.random() * colors.length)]
-      const opacity = opacities ? opacities[Math.floor(Math.random() * opacities.length)] : Math.random() * 0.7 + 0.3
-      const delay = Math.random() * 3
+      const size = (1 + (i % 3)) * (dotSize / 2) // Simplificar cálculo usando índice em vez de Math.random()
+      const colorSet = colors[i % colors.length] // Usar índice para selecionar cor
+      const opacity = opacities ? opacities[i % opacities.length] : 0.5 + (i % 5) * 0.1 // Simplificar cálculo
+      const delay = (i % 10) * 0.3 // Delay baseado no índice
 
       // Convert RGB to CSS color
       const color = `rgb(${colorSet[0]}, ${colorSet[1]}, ${colorSet[2]})`

@@ -38,7 +38,7 @@ export default function Contact() {
     // Verificar se estamos no servidor
     if (typeof window === "undefined") {
       // Retornar um array vazio ou valores padrão se estiver no servidor
-      return Array.from({ length: 30 }).map((_, index) => ({
+      return Array.from({ length: 12 }).map((_, index) => ({
         id: index,
         opacity: 0.3,
         x: "50%",
@@ -66,7 +66,7 @@ export default function Contact() {
 
   // Memoize as linhas de fluxo para evitar recálculos em cada renderização
   const flowLines = useMemo(() => {
-    return Array.from({ length: 8 }).map((_, i) => ({
+    return Array.from({ length: 4 }).map((_, i) => ({
       id: i,
       top: `${(i + 1) * 12}%`,
       duration: typeof window === "undefined" ? 20 : Math.random() * 15 + 20,

@@ -37,7 +37,7 @@ export default function Features() {
   const particles = useMemo(() => {
     // Verificar se estamos no servidor
     if (typeof window === "undefined") {
-      return Array.from({ length: 50 }).map((_, index) => ({
+      return Array.from({ length: 20 }).map((_, index) => ({
         id: index,
         x: 0,
         y: 0,
@@ -100,14 +100,13 @@ export default function Features() {
 
         {/* Animated grid lines */}
         <div className="absolute inset-0">
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => (
             <motion.div
               key={`h-line-${i}`}
               className="absolute h-px bg-green-500/20 w-full"
-              style={{ top: `${(i + 1) * 10}%` }}
+              style={{ top: `${(i + 1) * 20}%` }}
               animate={{
                 opacity: [0.1, 0.3, 0.1],
-                scaleY: [1, 1.5, 1],
               }}
               transition={{
                 duration: 5,
@@ -136,7 +135,7 @@ export default function Features() {
 
         {/* Animated code snippets */}
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 15 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index) => (
             <motion.div
               key={`code-${index}`}
               className="absolute font-mono text-green-500/30 text-xs whitespace-nowrap"
