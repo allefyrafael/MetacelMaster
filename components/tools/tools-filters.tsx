@@ -32,4 +32,3 @@ export default function ToolsFilters({ activeCategory, setActiveCategory }: Tool
     </motion.div>
   )
 }
-

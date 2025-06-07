@@ -35,29 +35,18 @@ export default function Features() {
 
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
-    // Verificar se estamos no servidor
-    if (typeof window === "undefined") {
-      return Array.from({ length: 20 }).map((_, index) => ({
-        id: index,
-        x: 0,
-        y: 0,
-        opacity: 0.3,
-        scale: 0.8,
-        size: 2,
-        blur: "0px",
-        glow: 3,
-      }))
-    }
-
-    return Array.from({ length: 50 }).map((_, index) => ({
+    const isServer = typeof window === "undefined"
+    const particleCount = isServer ? 20 : 50
+    
+    return Array.from({ length: particleCount }).map((_, index) => ({
       id: index,
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      opacity: Math.random() * 0.5 + 0.1,
-      scale: Math.random() * 0.5 + 0.5,
-      size: Math.random() * 4 + 1,
-      blur: Math.random() > 0.5 ? "1px" : "0px",
-      glow: Math.random() * 5 + 2,
+      x: isServer ? 0 : Math.random() * window.innerWidth,
+      y: isServer ? 0 : Math.random() * window.innerHeight,
+      opacity: isServer ? 0.3 : Math.random() * 0.5 + 0.1,
+      scale: isServer ? 0.8 : Math.random() * 0.5 + 0.5,
+      size: isServer ? 2 : Math.random() * 4 + 1,
+      blur: isServer ? "0px" : Math.random() > 0.5 ? "1px" : "0px",
+      glow: isServer ? 3 : Math.random() * 5 + 2,
     }))
   }, [])
 
@@ -331,4 +320,3 @@ function StatCard({ number, label, delay }: { number: string; label: string; del
     </motion.div>
   )
 }
-

@@ -599,7 +599,11 @@ function EnhancedUnlockAnimation() {
 }
 
 // Efeito de digitação para texto
-function TypewriterEffect({ text }) {
+interface TypewriterEffectProps {
+  text: string;
+}
+
+function TypewriterEffect({ text }: TypewriterEffectProps) {
   const [displayText, setDisplayText] = useState("")
 
   useEffect(() => {
@@ -629,22 +633,22 @@ function TypewriterEffect({ text }) {
 function CodeParticles() {
   // Memoize as partículas para evitar recálculos em cada renderização
   const particles = useMemo(() => {
-    // Verificar se estamos no servidor ou no cliente
     const isServer = typeof window === "undefined"
+    const particleCount = 20
 
-    return Array.from({ length: 20 }).map((_, index) => {
-      const size = Math.random() * 12 + 8
+    return Array.from({ length: particleCount }).map((_, index) => {
+      const size = isServer ? 10 : Math.random() * 12 + 8
       return {
         id: index,
         size,
-        initialX: `${Math.random() * 100}%`,
-        initialY: `${Math.random() * 100}%`,
-        targetY: `${Math.random() * -50 - 20}%`,
-        targetX: `${Math.random() * 20 - 10 + Number.parseFloat(`${Math.random() * 100}`)}%`,
-        opacity: Math.random() * 0.5 + 0.2,
-        duration: Math.random() * 8 + 4,
-        delay: Math.random() * 5,
-        content: Math.random() > 0.7 ? "01" : Math.random() > 0.5 ? "10" : Math.random() > 0.3 ? "}" : "{",
+        initialX: isServer ? `${(index % 5) * 20}%` : `${Math.random() * 100}%`,
+        initialY: isServer ? `${Math.floor(index / 5) * 20}%` : `${Math.random() * 100}%`,
+        targetY: isServer ? "-20%" : `${Math.random() * -50 - 20}%`,
+        targetX: isServer ? `${(index % 5) * 20}%` : `${Math.random() * 20 - 10 + Number.parseFloat(`${Math.random() * 100}`)}%`,
+        opacity: isServer ? 0.3 : Math.random() * 0.5 + 0.2,
+        duration: isServer ? 6 : Math.random() * 8 + 4,
+        delay: isServer ? index * 0.5 : Math.random() * 5,
+        content: isServer ? "01" : Math.random() > 0.7 ? "01" : Math.random() > 0.5 ? "10" : Math.random() > 0.3 ? "}" : "{",
       }
     })
   }, [])
@@ -682,4 +686,3 @@ function CodeParticles() {
     </div>
   )
 }
-

@@ -26,4 +26,3 @@ export default function ToolsHeader({ title, subtitle }: ToolsHeaderProps) {
     </motion.div>
   )
 }
-

@@ -194,4 +194,3 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     </li>
   )
 }
-

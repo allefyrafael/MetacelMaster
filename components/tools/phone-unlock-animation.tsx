@@ -140,4 +140,3 @@ function BinaryParticles({ unlocked }: { unlocked: boolean }) {
     </div>
   )
 }
-

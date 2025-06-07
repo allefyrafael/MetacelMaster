@@ -75,4 +75,3 @@ export function PerformanceProvider({ children }: { children: React.ReactNode })
 export function usePerformance() {
   return useContext(PerformanceContext)
 }
-

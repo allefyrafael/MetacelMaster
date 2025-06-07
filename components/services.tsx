@@ -18,7 +18,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import { trackFacebookEvent } from "@/lib/facebook-pixel"
 
 export default function Services() {
-  const [selectedService, setSelectedService] = useState<string | null>(null)
+  // Define o tipo das chaves do serviceLinks
+  type ServiceType = keyof typeof serviceLinks;
+  
+  const [selectedService, setSelectedService] = useState<ServiceType | null>(null)
   const [showAlert, setShowAlert] = useState(false)
 
   // Auto-hide alert after 3 seconds
@@ -80,7 +83,7 @@ export default function Services() {
     [],
   )
 
-  const handleServiceSelect = (serviceName: string) => {
+  const handleServiceSelect = (serviceName: ServiceType) => {
     setSelectedService(serviceName === selectedService ? null : serviceName)
   }
 
@@ -436,4 +439,3 @@ function ServiceCardContent({ items }: { items: { icon: string; title: string; d
     </div>
   )
 }
-

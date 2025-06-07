@@ -79,4 +79,3 @@ export default function ToolCard({ name, category, price, duration, icon, index,
     </div>
   )
 }
-

@@ -65,4 +65,3 @@ export default function ToolsGrid({ tools }: ToolsGridProps) {
     </motion.div>
   )
 }
-

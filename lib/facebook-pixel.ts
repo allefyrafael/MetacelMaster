@@ -11,4 +11,3 @@ export function trackFacebookConversion(event: string, options = {}) {
     window.fbq("trackCustom", event, options)
   }
 }
-

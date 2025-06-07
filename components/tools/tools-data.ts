@@ -105,4 +105,3 @@ export const toolsData: Tool[] = [
     link: "https://wa.link/jpfev1",
   },
 ]
-
