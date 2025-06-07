@@ -475,7 +475,7 @@ export default function AdsSpecializationLanding() {
                 <Gift className="text-yellow-500 h-12 w-12 sm:h-14 md:h-16 md:w-16 mx-auto mb-3 sm:mb-4" />
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Compre agora e </span>
-                  <span className="text-yellow-500">Você ganha de brinde!</span>
+                  <span className="text-yellow-500">Você ganha de brinde esses Cursos!</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                   {bonusCourses.map((course, index) => (
